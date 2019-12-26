@@ -1,0 +1,207 @@
+@charset "UTF-8";
+
+html, body {
+	width: 100%;
+	height: 100%;
+}
+
+* {
+	margin: 0px;
+	padding: 0px;
+}
+
+a {
+	text-decoration: none;
+	color: #99f;
+	transition: 0.3s;
+}
+
+a:hover {
+	color: #f99;
+}
+
+ol {
+	list-style-type: none;
+}
+
+ul {
+	list-style-type: none;
+}
+
+.hr {
+	height: 1px;
+	border: 0px;
+	border-bottom: 1px rgb(200, 200, 200) solid;
+	outline: 0px;
+}
+
+.line-right {
+	border-right: 1px rgb(20, 20, 20) solid;
+}
+
+.font-big {
+	display: inline-block;
+	font-size: 2em;
+	margin: 10px;
+}
+
+.font-small {
+	display: inline-block;
+	font-size: 0.8em;
+	margin: 5px;
+}
+
+.font-fff {
+	color: #fff;
+}
+
+.font-eee {
+	color: #eee;
+}
+
+.font-aaa {
+	color: #aaa;
+}
+
+.font-666 {
+	color: #666;
+}
+
+.font-999 {
+	color: #999;
+}
+
+.font-f99 {
+	color: #f99;
+}
+
+.font-99f {
+	color: #99f;
+}
+
+.font-9f9 {
+	color: #9f9;
+}
+
+.font-ff9 {
+	color: #ff9;
+}
+
+.font-9ff {
+	color: #ff9;
+}
+
+.font-f9f {
+	color: #ff9;
+}
+
+.bg-f99 {
+	background: #f99;
+}
+
+.bg-99f {
+	background: #99f;
+}
+
+.bg-9f9 {
+	background: #9f9;
+}
+
+.bg-ff9 {
+	background: #ff9;
+}
+
+.bg-9ff {
+	background: #ff9;
+}
+
+.bg-f9f {
+	background: #ff9;
+}
+
+.bg-left {
+	text-align: left;
+}
+
+.font-left {
+	text-align: left;
+}
+
+.font-center {
+	text-align: center;
+}
+
+.font-right {
+	display: flex;
+	text-align: right;
+}
+
+.flex-left {
+	display: flex;
+	justify-content: left;
+}
+
+.flex-center {
+	display: flex;
+	justify-content: center;
+}
+
+.flex-right {
+	display: flex;
+	justify-content: right;
+}
+
+.flex-between {
+	display: flex;
+	justify-content: space-between;
+}
+
+.flex-around {
+	display: flex;
+	justify-content: space-around;
+}
+
+.flex-middle {
+	display: flex;
+	align-items: center;
+}
+
+.button {
+	padding: 10px 20px;
+	background: #f99;
+	color: #fff;
+	text-align: center;
+}
+
+.pad10 {
+	padding: 10px;
+}
+
+.wh100 {
+	width: 100px;
+	height: 100px;
+}
+
+.box {
+	box-shadow: 0px 0px 5px 1px #fff inset;
+}
+
+.icon-like {
+	width: 15px;
+	height: 15px;
+	background-color: #f99;
+	background: url("/static/jsp/utils/_04_color/icon/icon_like.png");
+	background: no-repeat;
+	background-size: cover;
+	background-position: center;
+}
+
+.icon-fire {
+	width: 15px;
+	height: 15px;
+	background-color: #f99;
+	background: url("/static/jsp/utils/_04_color/icon/icon_fire.png");
+	background: no-repeat;
+	background-size: cover;
+	background-position: center;
+}

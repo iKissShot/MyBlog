@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Js Barcode</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/bootstrap-3.3.4.css">
+<link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/font-awesome.4.6.0.css">
+<link rel="stylesheet" href="css/style.css">
+
+<script src='js/JsBarcode.all.min.js'></script>
+</head>
+
+
+<body>
+
+	<div class="container" id="app">
+		<div class="form-group">
+			<svg id="barcode1"></svg>
+		</div>
+		<script>
+			JsBarcode("#barcode1", "Hi world!");
+		</script>
+	</div>
+	<br />
+	<br />
+
+
+
+	<div class="container" id="app">
+		<div class="form-group">
+			<svg id="barcode"></svg>
+		</div>
+		<script>
+			JsBarcode("#barcode", "1234", {
+				format : "pharmacode",
+				lineColor : "#0aa",
+				width : 4,
+				height : 40,
+				displayValue : true
+			});
+		</script>
+	</div>
+	<br />
+	<br />
+
+
+	<div class="container" id="app">
+		<div class="form-group">
+			<svg class="barcode3" jsbarcode-format="upc" jsbarcode-value="123456789012" jsbarcode-textmargin="0" jsbarcode-fontoptions="bold">
+			</svg>
+		</div>
+		<script>
+			JsBarcode(".barcode3").init();
+		</script>
+	</div>
+
+
+</body>
+</html>

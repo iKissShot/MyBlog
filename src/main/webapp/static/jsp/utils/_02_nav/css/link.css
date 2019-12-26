@@ -1,0 +1,21 @@
+@charset "UTF-8"; 
+
+* {
+	margin: 0;
+	padding: 0;
+	word-spacing: 0.1em;
+	letter-spacing: 0.1em;
+	color: #666;
+	outline: 0px;
+	cursor: url('/static/jsp/web/img/cursor_1.png'), default;
+}
+
+a {
+	text-decoration: none;
+	transition: 0.3s;
+}
+
+a:hover {
+	color: #f99;
+	cursor: url('/static/jsp/web/img/cursor_2.png'), pointer;
+}

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.kissshot.myblog.mapper.LabelMapper">
+	<resultMap id="BaseResultMap"
+		type="top.kissshot.myblog.pojo.Label">
+		<id column="lid" jdbcType="INTEGER" property="lid" />
+		<result column="name" jdbcType="VARCHAR" property="name" />
+		<result column="alias" jdbcType="VARCHAR" property="alias" />
+		<result column="description" jdbcType="VARCHAR"
+			property="description" />
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria"
+				separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" prefixOverrides="and" suffix=")">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value}
+									and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach close=")" collection="criterion.value"
+										item="listItem" open="(" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		lid, name, alias, description
+	</sql>
+	<select id="selectByExample"
+		parameterType="top.kissshot.myblog.pojo.LabelExample"
+		resultMap="BaseResultMap">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		'false' as QUERYID,
+		<include refid="Base_Column_List" />
+		from labels
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByPrimaryKey"
+		parameterType="java.lang.Integer" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from labels
+		where lid = #{lid,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey"
+		parameterType="java.lang.Integer">
+		delete from labels
+		where lid = #{lid,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" keyColumn="lid" keyProperty="lid"
+		parameterType="top.kissshot.myblog.pojo.Label" useGeneratedKeys="true">
+		insert into labels (name, alias, description
+		)
+		values
+		(#{name,jdbcType=VARCHAR}, #{alias,jdbcType=VARCHAR},
+		#{description,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" keyColumn="lid" keyProperty="lid"
+		parameterType="top.kissshot.myblog.pojo.Label" useGeneratedKeys="true">
+		insert into labels
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="name != null">
+				name,
+			</if>
+			<if test="alias != null">
+				alias,
+			</if>
+			<if test="description != null">
+				description,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="alias != null">
+				#{alias,jdbcType=VARCHAR},
+			</if>
+			<if test="description != null">
+				#{description,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective"
+		parameterType="top.kissshot.myblog.pojo.Label">
+		update labels
+		<set>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="alias != null">
+				alias = #{alias,jdbcType=VARCHAR},
+			</if>
+			<if test="description != null">
+				description = #{description,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where lid = #{lid,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey"
+		parameterType="top.kissshot.myblog.pojo.Label">
+		update labels
+		set name = #{name,jdbcType=VARCHAR},
+		alias =
+		#{alias,jdbcType=VARCHAR},
+		description =
+		#{description,jdbcType=VARCHAR}
+		where lid = #{lid,jdbcType=INTEGER}
+	</update>
+</mapper>

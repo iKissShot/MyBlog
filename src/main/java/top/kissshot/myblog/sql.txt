@@ -1,0 +1,206 @@
+DROP DATABASE IF EXISTS MyBlog;
+CREATE DATABASE MyBlog;
+use MyBlog;
+
+#用户
+CREATE TABLE users(
+uid int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+role int(11) DEFAULT 0,
+name varchar(31) NOT NULL,
+pwd varchar(31) NOT NULL,
+email varchar(31) NOT NULL,
+age int(11) DEFAULT 16,
+gender char(1) DEFAULT 'F',
+motto varchar(255) DEFAULT '我将用永不臣服于这失控的世界，自由地追逐繁星！',
+date datetime NOT NULL
+);
+
+#博文
+CREATE TABLE articles(
+aid int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+uid int(11) NOT NULL,
+sid int(11) NOT NULL,
+lid varchar(255) NOT NULL,
+title varchar(255) NOT NULL,
+content longtext NOT NULL,
+view_count int(11) DEFAULT 1,
+like_count int(11) DEFAULT 0,
+comment_count int(11) DEFAULT 0,
+date datetime NOT NULL
+);
+
+#评论
+CREATE TABLE comments(
+cid int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+uid int(11) NOT NULL,
+aid int(11) DEFAULT 0,
+pcid int(11) DEFAULT 0,
+content text NOT NULL ,
+like_count int(11) DEFAULT 0,
+date datetime NOT NULL
+);
+
+#分类
+CREATE TABLE sorts(
+sid int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+psid int(11) DEFAULT 0,
+name varchar(255) NOT NULL,
+alias varchar(255) NOT NULL,
+description text NOT NULL
+);
+
+#标签
+CREATE TABLE labels(
+lid int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+name varchar(255) NOT NULL,
+alias varchar(255) NOT NULL,
+description text NOT NULL
+);
+
+#增加用户
+INSERT INTO users(role, name, pwd, email, date) VALUES
+(255, 'KissShot', 'vcde45t67uhbv...', '3043856477@qq.com', '2019-12-2 14:30'),
+(255, 'Asuna', 'vcde45t67uhbv...', '3043856477@qq.com', '2019-12-2 15:00'), 
+(255, 'Kirito', 'vcde45t67uhbv...', '3043856477@qq.com', '2019-12-2 15:30');
+
+#增加分类
+INSERT INTO sorts(name, alias, description) VALUES
+('Android', '安卓开发', '安卓开发类'), 
+('Java', 'Java开发', 'Java开发类'),
+('HTML', 'HTML开发', '网页前端类');
+
+#增加标签
+INSERT INTO labels(name, alias, description) VALUES
+('Android', '安卓开发', '安卓开发标签'), 
+('Java', 'Java开发', 'Java开发标签'),
+('HTML', 'HTML开发', '网页前端标签');
+
+#增加博文
+INSERT INTO articles(uid, sid, lid, title, content, view_count, like_count, comment_count, date) VALUES
+(1, 1, '1', 'KissShot第一篇博文的标题', 'KissShot第一篇博文的内容，分类1，标签1！', 999, 99, 9, '2019-12-2 14:30'),
+(1, 2, '1_2', 'KissShot第二篇博文的标题', 'KissShot第二篇博文的内容，分类2，标签12！', 555, 55, 5, '2019-12-2 15:00'),
+(3, 3, '1_2_3', 'KissShot第三篇博文的标题', 'KissShot第三篇博文的内容，分类3，标签123！', 333, 33, 3, '2019-12-2 15:30'),
+(2, 2, '2', 'Asuna第二篇博文的标题', 'Asuna博文的内容，分类2，标签2！', 555, 55, 5, '2019-12-2 16:00'),
+(3, 3, '1_3', 'Kirito第三篇博文的标题', 'Kirito博文的内容，分类3，标签13！', 333, 33, 3, '2019-12-2 16:30');
+
+#增加评论
+INSERT INTO comments(uid, aid, content, like_count, date) VALUES
+(1, 1, 'KissShot的评论', 9, '2019-12-2 15:30'),
+(2, 1, 'Asuna的评论', 5, '2019-12-2 16:00'),
+(3, 1, 'Kirito的评论', 3, '2019-12-2 16:30'),
+(1, 2, 'KissShot的评论', 9, '2019-12-2 15:30'),
+(2, 2, 'Asuna的评论', 5, '2019-12-2 16:00'),
+(3, 2, 'Kirito的评论', 3, '2019-12-2 16:30'),
+(1, 3, 'KissShot的评论', 9, '2019-12-2 15:30'),
+(2, 3, 'Asuna的评论', 5, '2019-12-2 16:00'),
+(3, 4, 'Kirito的评论', 3, '2019-12-2 16:30');
+
+
+
+
+
+
+#之前的user表，用于测试的。。
+CREATE TABLE user(
+uid int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+role int(11) DEFAULT 0,
+name varchar(31) NOT NULL,
+pwd varchar(31) NOT NULL,
+email varchar(31) NOT NULL,
+age int(11) DEFAULT 16,
+gender char(1) DEFAULT 'F',
+motto varchar(255) DEFAULT '我将用永不臣服于这失控的世界，自由地追逐繁星！'
+);
+INSERT INTO user(role, name, pwd, email) VALUES
+(255, 'KissShot', 'vcde45t67uhbv...', '3043856477@qq.com'),
+(255, 'Asuna', 'vcde45t67uhbv...', '3043856477@qq.com'), 
+(255, 'Kirito', 'vcde45t67uhbv...', '3043856477@qq.com');
+
+
+
+
+
+
+
+
+
+#导航用
+DROP TABLE IF EXISTS navs;
+DROP TABLE IF EXISTS categories;
+DROP TABLE IF EXISTS sites;
+
+#一个用户一个导航
+CREATE TABLE navs(
+nid int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+uid int(11) NOT NULL,
+type varchar(255) DEFAULT '0_0'
+);
+
+#所有用户的分类
+CREATE TABLE categories(
+cid int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+nid int(11) NOT NULL,
+order_ int(11) NOT NULL,
+name varchar(255) NOT NULL,
+count int(11) DEFAULT 0
+);
+
+#所有分类的站点
+CREATE TABLE sites(
+sid int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+cid int(11) NOT NULL,
+order_ int(11) NOT NULL,
+name varchar(255) NOT NULL,
+url varchar(255) NOT NULL,
+icon varchar(255) NOT NULL
+);
+
+INSERT INTO navs(uid, type) VALUES
+(1, '1_1'),
+(2, '0_0');
+
+INSERT INTO categories(nid, order_, name, count) VALUES
+(1, 1, '1cate1', 1),
+(1, 2, '1cate2', 2),
+(1, 3, '1cate3', 3),
+(1, 4, '1cate4', 4),
+
+(2, 1, '2新用户的分类1', 1),
+(2, 2, '2新用户的分类2', 3);
+
+INSERT INTO sites(cid, order_, name, url, icon) VALUES
+(1, 1, '1site1', 'http://www.jder.net/', 'jder'),
+(2, 1, '2site1', 'http://www.jder.net/', 'jder'),
+(2, 2, '2site2', 'http://www.jder.net/', 'jder'),
+(3, 1, '3site1', 'http://www.jder.net/', 'jder'),
+(3, 2, '3site2', 'http://www.jder.net/', 'jder'),
+(3, 3, '3site3', 'http://www.jder.net/', 'jder'),
+(4, 1, '4site1', 'http://www.jder.net/', 'jder'),
+(4, 2, '4site2', 'http://www.jder.net/', 'jder'),
+(4, 3, '4site3', 'http://www.jder.net/', 'jder'),
+(4, 4, '4site4', 'http://www.jder.net/', 'jder'),
+
+(5, 1, '5新用户的网站1', 'http://www.jder.net/', 'jder'),
+(6, 1, '6新用户的网站1', 'http://www.jder.net/', 'jder'),
+(6, 2, '6新用户的网站2', 'http://www.jder.net/', 'jder'),
+(6, 3, '6新用户的网站3', 'http://www.jder.net/', 'jder');
+
+
+
+
+
+
+
+#颜色拾取器
+DROP TABLE IF EXISTS colorPlattes;
+CREATE TABLE colorPlattes(
+cid int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+color1 varchar(6) NOT NULL DEFAULT 'FF9999',
+color2 varchar(6) NOT NULL DEFAULT '99FF99',
+color3 varchar(6) NOT NULL DEFAULT '9999FF',
+color4 varchar(6) NOT NULL DEFAULT 'FF99FF',
+viewCount int NOT NULL DEFAULT 99,
+likeCount int NOT NULL DEFAULT 9,
+date varchar(255)
+);
+ALTER TABLE colorPlattes AUTO_INCREMENT = 1000;

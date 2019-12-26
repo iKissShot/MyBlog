@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.kissshot.myblog.mapper.ColorPlattesMapper">
+	<resultMap id="BaseResultMap"
+		type="top.kissshot.myblog.pojo.ColorPlattes">
+		<id column="cid" jdbcType="INTEGER" property="cid" />
+		<result column="color1" jdbcType="VARCHAR" property="color1" />
+		<result column="color2" jdbcType="VARCHAR" property="color2" />
+		<result column="color3" jdbcType="VARCHAR" property="color3" />
+		<result column="color4" jdbcType="VARCHAR" property="color4" />
+		<result column="viewCount" jdbcType="INTEGER"
+			property="viewcount" />
+		<result column="likeCount" jdbcType="INTEGER"
+			property="likecount" />
+		<result column="date" jdbcType="VARCHAR" property="date" />
+	</resultMap>
+
+	<update id="viewCountUp" parameterType="java.lang.Integer">
+		update colorPlattes set
+		viewCount = viewCount + 1 where cid= #{cid};
+	</update>
+
+	<update id="likeCountUp" parameterType="java.lang.Integer">
+		update colorPlattes set
+		likeCount = likeCount + 1 where cid= #{cid};
+	</update>
+
+	<select id="getLastCid" resultType="java.lang.Integer">
+		select cid from colorPlattes
+		order by cid desc limit 1;
+	</select>
+
+	<sql id="Example_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria"
+				separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" prefixOverrides="and" suffix=")">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value}
+									and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach close=")" collection="criterion.value"
+										item="listItem" open="(" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		cid, color1, color2, color3, color4, viewCount, likeCount,
+		date
+	</sql>
+	<select id="selectByExample"
+		parameterType="top.kissshot.myblog.pojo.ColorPlattesExample"
+		resultMap="BaseResultMap">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		'false' as QUERYID,
+		<include refid="Base_Column_List" />
+		from colorplattes
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByPrimaryKey"
+		parameterType="java.lang.Integer" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from colorplattes
+		where cid = #{cid,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey"
+		parameterType="java.lang.Integer">
+		delete from colorplattes
+		where cid =
+		#{cid,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" keyColumn="cid" keyProperty="cid"
+		parameterType="top.kissshot.myblog.pojo.ColorPlattes"
+		useGeneratedKeys="true">
+		insert into colorplattes (color1, color2, color3,
+		color4, viewCount, likeCount,
+		date)
+		values (#{color1,jdbcType=VARCHAR},
+		#{color2,jdbcType=VARCHAR},
+		#{color3,jdbcType=VARCHAR},
+		#{color4,jdbcType=VARCHAR}, #{viewcount,jdbcType=INTEGER},
+		#{likecount,jdbcType=INTEGER},
+		#{date,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" keyColumn="cid" keyProperty="cid"
+		parameterType="top.kissshot.myblog.pojo.ColorPlattes"
+		useGeneratedKeys="true">
+		insert into colorplattes
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="color1 != null">
+				color1,
+			</if>
+			<if test="color2 != null">
+				color2,
+			</if>
+			<if test="color3 != null">
+				color3,
+			</if>
+			<if test="color4 != null">
+				color4,
+			</if>
+			<if test="viewcount != null">
+				viewCount,
+			</if>
+			<if test="likecount != null">
+				likeCount,
+			</if>
+			<if test="date != null">
+				date,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="color1 != null">
+				#{color1,jdbcType=VARCHAR},
+			</if>
+			<if test="color2 != null">
+				#{color2,jdbcType=VARCHAR},
+			</if>
+			<if test="color3 != null">
+				#{color3,jdbcType=VARCHAR},
+			</if>
+			<if test="color4 != null">
+				#{color4,jdbcType=VARCHAR},
+			</if>
+			<if test="viewcount != null">
+				#{viewcount,jdbcType=INTEGER},
+			</if>
+			<if test="likecount != null">
+				#{likecount,jdbcType=INTEGER},
+			</if>
+			<if test="date != null">
+				#{date,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective"
+		parameterType="top.kissshot.myblog.pojo.ColorPlattes">
+		update colorplattes
+		<set>
+			<if test="color1 != null">
+				color1 = #{color1,jdbcType=VARCHAR},
+			</if>
+			<if test="color2 != null">
+				color2 = #{color2,jdbcType=VARCHAR},
+			</if>
+			<if test="color3 != null">
+				color3 = #{color3,jdbcType=VARCHAR},
+			</if>
+			<if test="color4 != null">
+				color4 = #{color4,jdbcType=VARCHAR},
+			</if>
+			<if test="viewcount != null">
+				viewCount = #{viewcount,jdbcType=INTEGER},
+			</if>
+			<if test="likecount != null">
+				likeCount = #{likecount,jdbcType=INTEGER},
+			</if>
+			<if test="date != null">
+				date = #{date,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where cid = #{cid,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey"
+		parameterType="top.kissshot.myblog.pojo.ColorPlattes">
+		update colorplattes
+		set color1 =
+		#{color1,jdbcType=VARCHAR},
+		color2 = #{color2,jdbcType=VARCHAR},
+		color3
+		= #{color3,jdbcType=VARCHAR},
+		color4 = #{color4,jdbcType=VARCHAR},
+		viewCount = #{viewcount,jdbcType=INTEGER},
+		likeCount =
+		#{likecount,jdbcType=INTEGER},
+		date = #{date,jdbcType=VARCHAR}
+		where cid
+		= #{cid,jdbcType=INTEGER}
+	</update>
+</mapper>

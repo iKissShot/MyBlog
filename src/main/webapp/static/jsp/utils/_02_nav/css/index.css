@@ -1,0 +1,329 @@
+@charset "UTF-8";
+
+* {
+	margin: 0px;
+	padding: 0px;
+	color: #333;
+}
+
+a {
+	text-decoration: none;
+	transition: 0.3s;
+}
+
+a:hover {
+	color: #f99;
+}
+
+html, body {
+	width: 100%;
+	height: 100%;
+}
+
+body {
+	position: relative;
+	display: flex;
+	justify-content: center;
+}
+
+.body-bg {
+	height: 100%;
+	width: 100%;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	background-image: url('/static/jsp/utils/_02_nav/img/bg.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-attachment: fixed;
+	background-position: 50% 50%;
+}
+
+.container {
+	width: 60%;
+	min-width: 800px;
+	background: rgba(255, 255, 255, 0.8);
+	box-shadow: 0px 0px 20px 1px #aaa;
+	position: absolute;
+	top: 0px;
+	margin: 100px 10px;
+	padding: 50px 10px;
+}
+
+header {
+	width: 55%;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+}
+
+.datetime {
+	margin: 5px 3px;
+}
+
+.font-small {
+	color: #666;
+	font-size: 0.9em;
+	margin: 3px;
+}
+
+.font-big {
+	color: #555;
+	font-size: 3em;
+	font-weight: bold;
+	margin: 3px;
+}
+
+.font-white {
+	color: white;
+}
+
+.flex-left {
+	display: flex;
+	justify-content: left;
+}
+
+.flex-right {
+	display: flex;
+	justify-content: right;
+}
+
+.flex-center {
+	display: flex;
+	justify-content: center;
+}
+
+.flex-v-center {
+	display: flex;
+	align-items: center;
+}
+
+.flex-column {
+	flex-direction: column;
+	align-items: center;
+}
+
+.flex-row-between {
+	display: flex;
+	justify-content: space-between;
+}
+
+.width-match {
+	display: inline-block;
+	width: 100%;
+}
+
+.search {
+	margin: 5px;
+	width: 100%;
+	display: flex;
+}
+
+.search-box {
+	margin: 10px 3px;
+	height: 40px;
+	border: 1px #aaa solid;
+	padding: 10px;
+	flex-grow: 1;
+}
+
+.search-btn {
+	margin: 10px 3px;
+	height: 40px;
+	border: 1px #aaa solid;
+	padding: 0px 10px;
+	background: #3385FF;
+}
+
+.motto {
+	margin: 5px 3px;
+	width: 100%;
+}
+
+.main {
+	width: 85%;
+	margin: 20px 80px;
+}
+
+.tip {
+	width: 100%;
+}
+
+.dashed {
+	margin: 10px 0px;
+	border: none;
+	border-top: 1px #999 dashed;
+}
+
+.big-table {
+	width: 100%;
+}
+
+.big-table td:first-child {
+	width: 100px;
+}
+
+.list {
+	width: 100%;
+}
+
+.item-title {
+	margin: 5px;
+	padding: 10px;
+	margin: 1px;
+	transition: 0.1s;
+}
+
+.list a:hover .item-title {
+	color: #f99;
+}
+
+.item {
+	display: flex;
+	align-items: center;
+	padding: 5px;
+	float: left;
+}
+
+.list .item {
+	padding: 10px 0px;
+	margin: 1px 5px;
+	float: left;
+}
+
+.category-tip {
+	text-align: center;
+}
+
+.category-tip span {
+	margin: 10px;
+	padding: 10px;
+}
+
+.item-category {
+	display: flex;
+	justify-content: center;
+	font-size: 1em;
+	margin: 10px;
+	text-align: center;
+	flex-direction: column;
+}
+
+.btn {
+	border: 0px;
+	outline: 0px;
+	padding: 10px;
+	color: #fff;
+	background: #99f;
+	display: none;
+}
+
+.item-category .btn {
+	margin-top: 10px;
+}
+
+#editBtn {
+	margin: 0px;
+	padding: 5px;
+	display: block;
+	visibility: hidden;
+}
+
+.editBtn-contain {
+	width: 40px;
+	padding-left: 10px;
+}
+
+.item-category-op {
+	display: inline-block;
+	font-size: 0.8em;
+}
+
+.item-op {
+	float: left;
+	display: none;
+}
+
+.item-op a {
+	display: flex;
+	align-items: center;
+	margin: 3px;
+	padding: 3px;
+}
+
+.item-icon {
+	width: 15px;
+	height: 15px;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
+	margin: 3px;
+}
+
+.icon-url {
+	background-image: url("/static/jsp/utils/_02_nav/img/icon_url.png");
+}
+
+.icon-del {
+	background-image: url("/static/jsp/utils/_02_nav/img/icon_del.png");
+}
+
+.icon-rename {
+	background-image: url("/static/jsp/utils/_02_nav/img/icon_rename.png");
+}
+
+.icon-reurl {
+	background-image: url("/static/jsp/utils/_02_nav/img/icon_reurl.png");
+}
+
+.icon-reicon {
+	background-image: url("/static/jsp/utils/_02_nav/img/icon_reicon.png");
+}
+
+.icon-up {
+	background-image: url("/static/jsp/utils/_02_nav/img/icon_up.png");
+}
+
+.icon-down {
+	background-image: url("/static/jsp/utils/_02_nav/img/icon_down.png");
+}
+
+.icon-top {
+	background-image: url("/static/jsp/utils/_02_nav/img/icon_top.png");
+}
+
+.icon-bottom {
+	background-image: url("/static/jsp/utils/_02_nav/img/icon_bottom.png");
+}
+
+.icon-add {
+	background-image: url("/static/jsp/utils/_02_nav/img/icon_add.png");
+}
+
+.item-select {
+	display: none;
+	margin: 5px;
+}
+
+.bg-pink {
+	background: pink;
+}
+
+.op-table {
+	width: 100%;
+	display: none;
+}
+
+.op-table tr {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+.op-table td {
+	width: 150px !important;
+	height: 30px;
+	display: flex;
+	align-items: center;
+}
